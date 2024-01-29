@@ -46,7 +46,10 @@ class GithubHelper {
       this.baseRepoName = context.payload?.pull_request?.base?.repo?.name
     }
 
-    if (context.eventName === 'push') {
+    if (
+      context.eventName === 'push' ||
+      context.eventName === 'workflow_dispatch'
+    ) {
       this.isPR = false
       this.owner = context.payload?.repository?.owner?.login
       this.repo = context.payload?.repository?.name
